@@ -25,10 +25,10 @@ object Stories {
   final case class Story(story: String) extends AnyVal
 
   object Story {
-    implicit val greetingEncoder: Encoder[Story] = (a: Story) => Json.obj(
-      ("message", Json.fromString(a.story)),
+    implicit val storyEncoder: Encoder[Story] = (a: Story) => Json.obj(
+      ("story", Json.fromString(a.story)),
     )
-    implicit def greetingEntityEncoder[F[_]: Applicative]: EntityEncoder[F, Story] =
+    implicit def storyEntityEncoder[F[_]: Applicative]: EntityEncoder[F, Story] =
       jsonEncoderOf[F, Story]
   }
 
